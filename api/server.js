@@ -31,7 +31,7 @@ const sessionOptions = {
 };
 
 server.get("/", (req, res) => {
-  res.send("It works");
+  res.status(200).json({ api: "up" });
 });
 
 server.use(helmet());
