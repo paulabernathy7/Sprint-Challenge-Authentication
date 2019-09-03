@@ -48,6 +48,7 @@ Demonstrate your understanding of this week's concepts by answering the followin
       To slow down attackers you can use bcrypt to increase the iteration count.
 
 - [ ] What are the three parts of the JSON Web Token?
+      The three parts of a JSON Web Token are the header, payload, and the signature.
 
 ## Minimum Viable Product
 
