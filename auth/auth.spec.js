@@ -1,28 +1,30 @@
 const request = require("supertest");
 const server = require("../api/server");
 const auth = require("./auth-router.js");
+const db = require("../database/dbConfig");
 
-//testing http status code
+describe("POST /api/auth/register", () => {
+  afterEach(async () => {
+    await db("users").delete();
+  });
+  it("should return a JSON", async () => {
+    const user = { username: "paul", password: "ab" };
+    const res = await request(server)
+      .post("/api/auth/register/")
+      .send(user);
+    console.log(res.status);
+    expect(res.type).toBe("application/json");
+  });
 
-// describe("POST /api/auth/register", () => {
-//   let data = {
-//     username: "paul",
-//     password: "ab"
-//   };
-//   it("should return 201 created", () => {
-//     return request(server)
-//       .post("/api/auth/register", data)
-//       .then(res => {
-//         expect(res.status).toBe(201);
-//       });
-//   });
-
-//   //testing the format
-//   it("should return a json object", async () => {
-//     const res = await request(server).post("/api/auth/register", data);
-//     expect(res.type).toBe("application/json");
-//   });
-// });
+  it("should return status 201", async () => {
+    const user = { username: "paul", password: "ab" };
+    const res = await request(server)
+      .post("/api/auth/register/")
+      .send(user);
+    console.log(res.status);
+    expect(res.status).toBe(201);
+  });
+});
 
 describe("POST /api/auth/login", () => {
   let data = {
